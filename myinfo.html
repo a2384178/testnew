@@ -17,12 +17,14 @@
             width:400px;
             border: 1px solid gainsboro;
             top:50px;
+            float: left;
             left: 500px;
             background: linear-gradient(#d4d4d4,white);
             border-radius: 5px;
             position: absolute;
             opacity: 0.5;
             box-shadow: 1px 1px 2px;
+            overflow: hidden;
         }
         #container{
             top:-540px;
@@ -35,9 +37,33 @@
             display: inline-block;
            margin-left:330px;
             cursor: pointer;
+            color: #6e7275;
+            font-weight: bold;
         }
         ul{
             padding: 0;
+        }
+        .ul-a{
+            transition: all 1s ease;
+        }
+        .ul-a:hover {
+            transform: translateX(10px);
+            opacity: .8;
+        }
+        .arrow:hover{
+            color: black;
+        }
+        .arrow{
+            -webkit-animation: mymove 1s infinite ;
+            animation-name: mymove;
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
+            position: absolute;
+
+        }
+        @keyframes mymove{
+            from{right:10px;}
+            to{right: -30px;}
         }
         #ul1 li,#ul2 li{
             list-style: none;
@@ -49,6 +75,7 @@
             color: #6e7275;
             font-size: 20px;
             font-weight: bold;
+
         }
         .olistyle{
             background:linear-gradient(to top, #d6d6d6,whitesmoke)
@@ -69,14 +96,17 @@
         #container_p_left h2,#container_p_right h2{
             text-align: center;
             opacity: 0;
+            color: #fff8da;
         }
         .container_p_style1_left{
             line-height:3em;
             padding: 10px;
+            color: #fff8da;
         }
         .container_p_style{
             line-height:1.5em;
             padding: 10px;
+            color: #fff8da;
 
         }
         #footer{
@@ -100,28 +130,29 @@
 <body class="clear_fix">
     <div id="container" class="container_style">
         <h3>项目展示</h3>
-        <a class="a_right">切换>></a>
+        <a class="a_right">切换<span class="arrow">>></span></a>
         <ul id="ul1">
-            <li ><a href="js_project/project_zhuye.html" target="_blank">原生JS自制网站</a></li>
-            <li><a href="多图片展开.html" target="_blank">多图片展开</a></li>
-            <li><a href="简单图片切换.html" target="_blank">简单图片切换</a></li>
-            <li><a href="幻灯片.html" target="_blank">幻灯片</a></li>
-            <li><a href="新闻列表展示.html" target="_blank">新闻列表展示</a></li>
-            <li><a href="淘宝价格表.html" target="_blank">淘宝价格表</a></li>
-            <li><a href="修改文本的值.html" target="_blank">修改文本的值</a></li>
-            <li><a href="字符串查找替换.html" target="_blank">字符串查找替换</a></li>
+            <li class="ul-a "><a href="js_project/project_zhuye.html" target="_blank" >原生JS自制网站</a></li>
+            <li class="ul-a "><a href="多图片展开.html" target="_blank">多图片展开</a></li>
+            <li class="ul-a "><a href="简单图片切换.html" target="_blank">简单图片切换</a></li>
+            <li class="ul-a "><a href="幻灯片.html" target="_blank">幻灯片</a></li>
+            <li class="ul-a "><a href="新闻列表展示.html" target="_blank">新闻列表展示</a></li>
+            <li class="ul-a "><a href="淘宝价格表.html" target="_blank">淘宝价格表</a></li>
+            <li class="ul-a "><a href="修改文本的值.html" target="_blank">修改文本的值</a></li>
+            <li class="ul-a "><a href="字符串查找替换.html" target="_blank">字符串查找替换</a></li>
+            <li class="ul-a "><a href="手风琴效果.html" target="_blank">手风琴效果</a></li>
         </ul>
     </div>
     <div id="container2" class="container_style" style="display: none">
         <h3>项目展示</h3>
-        <a class="a_right">切换>></a>
+        <a class="a_right">切换<span class="arrow">>></span></a>
 
         <ul id="ul2">
-            <li><a href="禁止用户输入.html" target="_blank">禁止用户输入</a></li>
-            <li><a href="模拟ipad阅读器.html" target="_blank">模拟iPad阅读器</a></li>
-            <li><a href="全选反选.html" target="_blank">全选反选</a></li>
-            <li><a href="时间自动切换.html" target="_blank">时间自动切换</a></li>
-            <li><a href="验证用户名密码.html" target="_blank">验证用户名密码</a></li>
+            <li class="ul-a "><a href="禁止用户输入.html" target="_blank">禁止用户输入</a></li>
+            <li class="ul-a "><a href="模拟ipad阅读器.html" target="_blank">模拟iPad阅读器</a></li>
+            <li class="ul-a "><a href="全选反选.html" target="_blank">全选反选</a></li>
+            <li class="ul-a "><a href="时间自动切换.html" target="_blank">时间自动切换</a></li>
+            <li class="ul-a "><a href="验证用户名密码.html" target="_blank">验证用户名密码</a></li>
         </ul>
     </div>
     <div id="container_p_left">
@@ -147,7 +178,7 @@
     <div id="footer">
         <p>TEL：18628246713</p>
         <p>mail:a2384178@163.com</p>
-        <p>GITHub:https://github.com/a2384178/project</p>
+        <p>GITHub:https://github.com/a2384178</p>
     </div>
     <script type="text/javascript">
             var data1=[
@@ -166,14 +197,6 @@
                 {url:'淘宝价格表.html',title:'淘宝价格表'},
                 {url:'js_project/project_zhuye.html',title:'原生js自制网站'}
             ];
-           /* for(var i=0;i<data1.length;i++){
-                var item=data1[i];
-                str+='<li><a href="'+item.url+'"  title="'+item.title+'">'+item.title+'</a></li>';
-            }
-            for(var i=0;i<data2.length;i++){
-                var item2=data2[i];
-                str2+='<li><a href="'+item2.url+'" target="_blank" title="'+item2.title+'">'+item2.title+'</a></li>';
-            }*/
 
             var ocontainer=document.getElementById('container');
             var ocontainer2=document.getElementById('container2');
@@ -189,13 +212,13 @@
             var odivright=document.getElementById('container_p_right');
             var opright=odivright.getElementsByTagName('p');
             window.onload=function () {
-                var str1 = '我叫帖海阳，今年25岁，希望能够成为一名前端工程师。我毕业于东北大学自动化专业，曾在某外企担任项目工程师。有人说梦想还是要有的万一实现了呢！哪怕只有百分之一的希望，我也会尽百分百的努力。因此，我毅然选择辞职，向着自己目标迈进。';
+                var str1 = '我叫帖海阳，今年25岁，希望能够成为一名前端工程师。我毕业于东北大学自动化专业，曾在某外企担任项目工程师。负责过公司IT相关事宜，有人说梦想还是要有的万一实现了呢！哪怕只有百分之一的希望，我也会尽百分百的努力。因此，我毅然选择辞职，向着自己目标迈进。';
                 var n = 0;
                 var arr1=str1.split('');
                 var arr2=['1.能够熟练使用PS准确切图，精确到1像素，是我的理念。',
                     ' 2.熟悉HTML,CSS,能按照W3C标准用CSS+div进行布局书写。',
                     ' 3.对原生JS较为熟悉，了解浏览器兼容，左边的小作品全是用原生JS书写而成。',
-                    '4.了解jQuery，和bootstrap，目前正在学习ES6标准和react。'
+                    '4.了解jQuery，目前正在学习ES6标准和react。'
                 ];
                 var ofooter=document.getElementById('footer');
                 function initfoot() {
@@ -211,7 +234,7 @@
                 },10500);
                 setTimeout(function () {
                     initfoot()
-                },18000)
+                },18000);
                 function init() {
                     move(omyinfo,{
                         opacity:100
@@ -274,9 +297,9 @@
                     obj[i].index=i;
                     obj[i].onmouseover=function () {
                         for(var i=0;i<obj.length;i++){
-                            obj[i].className='';
+                           // obj[i].className='';
                         }
-                        obj[this.index].className='olistyle';
+                        //obj[this.index].className='olistyle';
                     }
                 }
             }
