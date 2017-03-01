@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>taobao-ad</title>
+    <style>
+        *{margin: 0;padding: 0}
+        #box{display: block;width: 400px;height: 255px;margin: 50px;position: relative;
+        border: 1px solid #ccc}
+        #small-box{position: relative;z-index: 1;}
+        #float-box{display: none;width: 160px;height: 120px;position: absolute;
+        background: #ffffcc;border: 1px solid #ccc;opacity: .5;cursor: move}
+        #mark{position: absolute;display: block;width: 400px;height: 255px;
+            z-index: 10;cursor: move;background: #fff;opacity: 0}
+        #big-box{display: none;position: absolute;top:0;left: 460px;
+        width: 400px;height: 255px; overflow: hidden;border: 1px solid #ccc;
+        z-index: 1;}
+        #big-box img{position: absolute;z-index: 5}
+    </style>
+    <script>
+        window.onload=function () {
+            var obox=document.getElementById('box');
+            var osmallbox=document.getElementById('small-box');
+            var ofloatbox=document.getElementById('float-box');
+            var omark=document.getElementById('mark');
+            var obigbox=document.getElementById('big-box');
+            var oimg=obigbox.getElementsByTagName('img')[0];
+
+            omark.onmouseover=function () {
+                ofloatbox.style.display='block';
+                obigbox.style.display='block';
+            };
+            omark.onmouseout=function () {
+                ofloatbox.style.display='none';
+                obigbox.style.display='none';
+
+            };
+            omark.onmousemove=function (e) {
+                var ev=e||window.event;
+                var left=ev.clientX-obox.offsetLeft-osmallbox.offsetLeft-ofloatbox.offsetWidth/2;
+                var top=ev.clientY-obox.offsetTop-osmallbox.offsetTop-ofloatbox.offsetTop/2;
+                if(left<0){
+                    left=0;
+                }else if(left>(omark.offsetWidth-ofloatbox.offsetWidth)){
+                    left=omark.offsetWidth-ofloatbox.offsetWidth;
+                }
+                if (top<0){
+                    top=0
+                }else if(top>(omark.offsetHeight-ofloatbox.offsetHeight)){
+                    top=omark.offsetHeight-ofloatbox.offsetHeight
+                }
+                ofloatbox.style.left=left+'px';
+                ofloatbox.style.top=top+'px';
+
+                var percentX=left/(omark.offsetWidth-ofloatbox.offsetWidth);
+                var percentY=top/(omark.offsetHeight-ofloatbox.offsetHeight);
+
+                oimg.style.left=-percentX*(oimg.offsetWidth-obigbox.offsetWidth)+'px';
+                oimg.style.top=-percentY*(oimg.offsetHeight-obigbox.offsetHeight)+'px';
+
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="box">
+    <div id="small-box">
+        <div id="mark"></div>
+        <div id="float-box"></div>
+        <img src="images/tbad.jpg"  width="400px" height="255px">
+    </div>
+    <div id="big-box">
+        <img src="images/tbad.jpg" width="800px" height="510px">
+    </div>
+</div>
+</body>
+</html>
