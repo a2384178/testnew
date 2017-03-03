@@ -94,7 +94,8 @@ nav{
     border: 0 solid black;
     width: 800px;
     height: 500px;
-    margin: 30px auto;
+    margin-top: 30px;
+    margin-left: 300px;
     position: relative;
     overflow: hidden;
 }
@@ -247,6 +248,37 @@ nav{
     bottom: 0;
     left: 50px;
 }
+.aside-container{
+    width: 134px;
+    background: #f6f6f6;
+    float: left;
+    margin-left: 80px;
+
+}
+.aside-container .aside-head{
+    border-radius: 15px;
+    background: #fb4e03;
+    font-size: 18px;
+    padding: 8px;
+    text-align: center;
+    font-weight: bold;
+    color: #f5fced;
+    margin-bottom:12px ;
+}
+.aside-container .aside-li{
+    padding: 6px 0 6px 24px;
+}
+.aside-container .aside-li:hover{
+    background: #c6c6c6;
+
+}
+.aside-container .aside-a{
+    transition: all .4s ease;
+    color: #7b88ff;
+}
+.aside-container .aside-a:hover{
+    color: #FB4E03;
+}
 #xiangshangjiantou{
     position: fixed;
     right: 20px;
@@ -258,7 +290,7 @@ nav{
     position: fixed;
     cursor: pointer;
     left: -20px;
-    top:400px;
+    top:550px;
     opacity: .9;
 
 }
