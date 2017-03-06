@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        #automatic{position: relative;margin: auto;height: 240px;width: 560px}
+
+        li{list-style: none;position: absolute;}
+        .pos-5{position:absolute;left: 200px;top:20px;z-index: 1 ;opacity: 0.5}
+        .pos-2{position:absolute;left: -60px;top:10px;z-index: 2 ;opacity:0.7}
+        .pos-3{position:absolute;left:0;z-index: 3;opacity: 1}
+        .pos-4{position:absolute;left: 90px;top:10px;z-index: 2;opacity: 0.7}
+        .pos-1{position:absolute;left: -120px;top:20px;z-index: 1 ;opacity: 0.5}
+
+/*
+        .pos-3{position:absolute;left:0;z-index: 3;opacity: 1}
+        .pos-4{position:absolute;left: 90px;top:10px;z-index: 2;opacity: 0.7}
+        .pos-2{position:absolute;left: -60px;top:10px;z-index: 2 ;opacity:0.7}
+        .pos-1{position:absolute;left: 200px;top:20px;z-index: 1 ;opacity: 0.5}
+        .pos-5{position:absolute;left: -120px;top:20px;z-index: 1 ;opacity: 0.5}
+*/
+
+        .prev-div{font-size: 36px;font-weight: bold;position: absolute;z-index: 10;left: -50px;top: 100px;cursor: pointer;color: #383838;}
+        .next-div{font-size: 36px;font-weight: bold;position: absolute;z-index: 10;left:380px;top: 100px;cursor: pointer;color: #383838;}
+        .prev-div:hover{color: #000000;}
+        .next-div:hover{color: #000000;}
+    </style>
+    <script src="move1.js"></script>
+    <script>
+        window.onload=function () {
+            var oprev=document.getElementsByClassName('prev-div')[0];
+            var onext=document.getElementsByClassName('next-div')[0];
+            var ocontainer=document.getElementById('automatic');
+            var ali=document.getElementsByTagName('li');
+            var arr=[];
+            var timer2=null;
+            for(var i=0;i<ali.length;i++){
+                var oimg=ali[i].getElementsByTagName('img')[0];
+                arr.push([parseInt(getstyle(ali[i],'left')),parseInt(getstyle(ali[i],'top')),
+                    getstyle(ali[i],'opacity'),getstyle(ali[i],'zIndex'),oimg.width,oimg.height])
+            }
+            //console.log(arr);
+            (function () {
+                clearInterval(timer2);
+                autoplay();
+            })();
+            function autoplay() {
+                clearInterval(timer2);
+                timer2=setInterval(function () {
+                    onext.onclick();
+                },5000)
+            }
+            ocontainer.onmouseover=function () {
+                clearInterval(timer2);
+            };
+            ocontainer.onmouseout=function () {
+                autoplay()
+            };
+
+            onext.onclick=function () {
+                arr.push(arr[0]);
+                arr.shift();
+                for(var i=0;i<ali.length;i++){
+                    var oimg=ali[i].getElementsByTagName('img')[0];
+                    ali[i].style.zIndex=arr[i][3];
+                    ali[i].style.opacity=arr[i][2];
+                    move(ali[i],{
+                        left:arr[i][0],
+                        top:arr[i][1]
+
+                    });
+                    move(oimg,{
+                        width:arr[i][4],
+                        height:arr[i][5]
+                    })
+                }
+            };
+            oprev.onclick=function () {
+                arr.unshift(arr[arr.length-1]);
+                arr.pop();
+                for(var i=0;i<ali.length;i++){
+                    var oimg=ali[i].getElementsByTagName('img')[0];
+                    ali[i].style.zIndex=arr[i][3];
+                    ali[i].style.opacity=arr[i][2];
+                    move(ali[i],{
+                        left:arr[i][0],
+                        top:arr[i][1]
+
+                    });
+                    move(oimg,{
+                        width:arr[i][4],
+                        height:arr[i][5]
+                    })
+                }
+            }
+        };
+
+        function getstyle(obj,attr) {
+            return obj.currentStyle?obj.currentStyle[attr]:getComputedStyle(obj)[attr];
+        }
+
+    </script>
+</head>
+<body>
+<div id="automatic">
+    <div class="prev-div"><div><</div></div>
+
+    <div class="next-div"><div >></div></div>
+    <ul>
+        <li class="pos-1">
+            <a><img src="img/5.jpg" width="270px" height="180px"></a>
+        </li>
+        <li class="pos-2">
+            <a><img src="img/2.jpg" width="330px" height="220px" ></a>
+        </li>
+        <li class="pos-3">
+            <a><img src="img/3.jpg" width="360px" height="240px"></a>
+        </li>
+        <li class="pos-4">
+            <a><img src="img/4.jpg" width="330px" height="220px"></a>
+        </li>
+        <li class="pos-5">
+            <a><img src="img/1.jpg" width="270px" height="180px"></a>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

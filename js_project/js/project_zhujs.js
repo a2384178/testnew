@@ -16,6 +16,44 @@ function handler() {
     showmenu();
     writedown()
 }
+(function () {
+    var oul=document.getElementById('right-ul1');
+    toshow(oul);
+    function toshow(obj) {
+        var adiv=obj.getElementsByTagName('div');
+        var inow=0;
+        var timer=null;
+        var btn=true;
+
+        setInterval(function () {
+            tochange()
+        },5000);
+        function tochange() {
+            timer=setInterval(function () {
+
+                if(inow==adiv.length){
+                    clearInterval(timer);
+                    inow=0;
+                    btn=!btn;
+                }
+                else if(btn){
+                    move(adiv[inow],{
+                        top:0
+                    });
+                    inow++;
+                }else {
+                    move(adiv[inow],{
+                        top:-30
+                    });
+                    inow++;
+                }
+
+            },200)
+        }
+    }
+
+})();
+
 //内容自动切换函数
 function aa () {
     //var arr1=['1','2','3','4','5','6','7','8','9'];
