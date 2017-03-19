@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>分页特效</title>
+    <style>
+        a{margin: 5px;}
+    </style>
+    <script>
+
+        window.onload=function () {
+            page({
+                id:'div1',
+                nownum:7,
+                allnum:10,
+                callback:function (now,all) {
+                    alert("当前:"+now+',总共:'+all)
+                }
+            })
+        };
+        function page(opt) {
+            if(!opt.id){return false}
+            var obj=document.getElementById(opt.id);
+            var nownum=opt.nownum||1;
+            var allnum=opt.allnum||5;
+            var callback=opt.callback||function () {};
+//首页
+            if(nownum>=4&&allnum>=6){
+                var oa=document.createElement('a');
+                oa.href='#1';
+                oa.innerHTML='首页';
+                obj.appendChild(oa);
+            }
+            //上一页
+
+            if(nownum>=2){
+                var oa=document.createElement('a');
+                oa.href='#'+(nownum-1);
+                oa.innerHTML='上一页';
+                obj.appendChild(oa);
+
+            }
+//总页数小于5页
+            if(allnum<=5){
+                for(var i=1;i<=allnum;i++){
+                    var oa=document.createElement('a');
+                    oa.href='#'+i;
+                    if(nownum==i){
+                        oa.innerHTML=i;
+                    }else {
+                        oa.innerHTML='['+i+']';
+                    }
+
+                    console.log(obj);
+                    obj.appendChild(oa);
+                }
+                //总页数大于五页
+            }else {
+                for(var i=1;i<=5;i++){
+                    var oa=document.createElement('a');
+                    if(nownum==1||nownum==2){
+                        oa.href='#'+i;
+                        if(nownum==i){
+                            oa.innerHTML=i;
+                        }else {
+                            oa.innerHTML='['+i+']';
+                        }
+//如果是最后两页
+                    }else if((allnum-nownum==0||allnum-nownum==1)){
+                        oa.href='#'+(allnum-5+i);
+                        //如果是倒数第一项
+                        if((allnum-nownum)==0&& i==5){
+                            oa.innerHTML=(allnum-5+i);
+                            //如果是倒数第二项
+                        }else if((allnum-nownum)==1&& i==4){
+                            oa.innerHTML=(allnum-5+i);
+                        }
+                        else {
+                            oa.innerHTML='['+(allnum-5+i)+']';
+                        }
+                    }
+                    else{
+                        oa.href='#'+(nownum-3+i);
+                        if(i==3){
+                            oa.innerHTML=(nownum-3+i);
+                        }else {
+                            oa.innerHTML='['+(nownum-3+i)+']';
+                        }
+                    }
+
+
+                    obj.appendChild(oa)
+                }
+                //添加下一页
+                if((allnum-nownum)>=1){
+                    var oa=document.createElement('a');
+                    oa.href='#'+(nownum+1);
+                    oa.innerHTML='下一页';
+                    obj.appendChild(oa);
+
+                }
+                if((allnum-nownum)>=3||allnum>=6){
+                    var oa=document.createElement('a');
+                    oa.href='#'+(nownum);
+                    oa.innerHTML='尾页';
+                    obj.appendChild(oa);
+                }
+                callback(nownum,allnum)
+            }
+            var aa=document.getElementsByTagName('a');
+            for(var i=0;i<aa.length;i++){
+                aa[i].onclick=function () {
+                    var nownum=parseInt(this.getAttribute('href').substring(1));
+
+                    obj.innerHTML='';
+                    page({
+                        id:opt.id,
+                        nownum:nownum,
+                        allnum:allnum,
+                        callback:callback
+                    })
+                    //return false;
+                }
+            }
+        }
+
+    </script>
+</head>
+<body>
+
+    <div id="div1">
+        <!--
+        <a href="#1">首页</a>
+        <a href="#3">上一页</a>
+        <a href="#2">[2]</a>
+        <a href="#3">[3]</a>
+        <a href="#4">4</a>
+        <a href="#5">[5]</a>
+        <a href="#6">[6]</a>
+        <a href="#5">下一页</a>
+        <a href="#10">尾页</a>
+
+-->
+    </div>
+</body>
+</html>
