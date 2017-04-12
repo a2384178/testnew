@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .container{margin: 300px auto;width: 500px}
+        .wrap{position: relative;border: 1px solid black; width: 200px;height: 20px}
+        .content{background: red;position: absolute;height: 20px;width: 100px}
+    </style>
+    <script src="a.js"></script>
+
+</head>
+<body>
+<div class="container" >
+    <div class="wrap">
+        <div class="content"></div>
+    </div>
+    <span>50%</span>
+</div>
+<div class="container">
+    <div class="wrap">
+        <div class="content"></div>
+    </div>
+    <span>50%</span>
+</div>
+<script>
+    (function () {
+        var ospan = document.querySelector(".container span");
+        var timer = null;
+        var ocontainer = document.querySelectorAll(".wrap");
+        var odiv = document.querySelector(".container .content");
+        var a = 0;
+        for(var i=0;i<ocontainer.length;i++){
+            ocontainer[i].onmouseenter =startLoading;
+        }
+
+        function startLoading() {
+            odiv.style.width = 0;
+            move(100, odiv,200);
+        }
+        function move(length, obj,wrapwidth) {
+            clearInterval(timer);
+            timer = setInterval(
+                function () {
+                    startMove(length, obj,wrapwidth)
+            }, 50)
+        }
+        function startMove(length, obj,wrapwidth) {
+            a = parseInt(getstyle(obj, 'width'));
+            obj.style.width = a + 10 + 'px';
+            ospan.innerHTML = parseInt(a / (wrapwidth) * 100) + '%';
+            //ospan.innerHTML=parseInt((1-(((length-a)/length)))*100)+'%';
+            if (a >= length) {
+                obj.style.width = length + 'px';
+                clearInterval(timer)
+            }
+        }
+
+    })()
+</script>
+</body>
+</html>

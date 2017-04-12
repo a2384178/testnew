@@ -1,0 +1,163 @@
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>超富创意的CSS3飞机跑道进度条动画DEMO演示</title>
+</head>
+<style>
+    /* Standard syntax */
+    body {
+        margin: 5%;
+    }
+    .container {
+        position: absolute;
+        top:1000px;
+        width:30%;
+        margin:0 auto
+    }
+    .title {
+
+        color:#fff;
+        padding:15px;
+        float:left;
+        position:relative;
+        -webkit-border-top-left-radius:5px;
+        -webkit-border-bottom-left-radius:5px;
+        -moz-border-radius-topleft:5px;
+        -moz-border-radius-bottomleft:5px;
+        border-top-left-radius:5px;
+        border-bottom-left-radius:5px
+    }
+    .bar-unfill {
+        height:15px;
+        display:block;
+        background:#fff;
+        width:100%;
+        border-radius:8px
+    }
+/*
+    .container:hover .bar-fill{
+        height:15px;
+        display:block;
+        background:#45c9a5;
+        width:0;
+        border-radius:8px;
+        -webkit-transition:width .8s ease;
+        -moz-transition:width .8s ease;
+        transition:width .8s ease;
+
+        -webkit-animation-name:progressbar;
+        -webkit-animation-duration:2s;
+        -webkit-animation-iteration-count:1;
+        -webkit-animation-fill-mode :forwards;
+
+    }
+*/
+    .bar-fill {
+        height:15px;
+        display:block;
+        //background:#45c9a5;
+        width:0;
+        border-radius:8px;
+        background-image:linear-gradient(-45deg,#e74c3c 0%, #eb6f63 25%, #e74c3c 50%, #eb6f63 75%,transparent);
+        -webkit-transition:width .8s ease;
+        -moz-transition:width .8s ease;
+        transition:width .8s ease;
+/*
+        -webkit-animation:progressbar 7s infinite;
+        animation:progressbar 7s infinite;
+*/
+
+        -webkit-animation-name:progressbar;
+        -webkit-animation-duration:2s;
+        -webkit-animation-iteration-count:1;
+        -webkit-animation-fill-mode :forwards;
+    }
+    /* Chrome, Safari, Opera */
+    @-webkit-keyframes progressbar {
+        from {
+            width:0
+        }
+        to {
+            width:100%
+        }
+    }
+    /* Standard syntax */
+    @keyframes progressbar {
+        from{
+            width: 0;
+        }to{
+            width: 100%;
+                 }
+    }
+</style>
+<script>
+    window.onscroll=function () {
+        var ocontainer = document.getElementsByClassName("container")[0];
+        var ospan = document.querySelectorAll(".b1ar-unfill span");
+        var scrolltop=document.documentElement.scrollTop||document.body.scrollTop;
+        var height=ocontainer.offsetTop;
+        var objheight=ocontainer.offsetHeight;
+        var screenheight=window.screen.height;
+        var len=ospan.length;
+        console.log(scrolltop);
+        console.log(height);
+        console.log(window.screen.height);
+        console.log(objheight);
+ if(scrolltop>=(height-screenheight/2+objheight/2)){
+     for (var i = 0; i < len; i++) {
+         console.log(1);
+         if (ospan[i].classList.contains('bar-fill') == false) {
+             ospan[i].className += ' ' + 'bar-fill';
+         }
+     }
+
+        }
+/*
+        if(){
+            if (parseInt(ocontainer.clientTop) <= 300) {
+                for (var i = 0; i < ospan.length; i++) {
+                    console.log(1);
+                    if (ospan[i].classList.contains('bar-fill') == false) {
+                        ospan[i].className += ' ' + 'bar-fill';
+                    }
+                }
+            }
+        }
+*/
+
+
+        /*
+        ocontainer.onmouseover=function () {
+           // console.log(ospan.length)
+            for(var i=0;i<ospan.length;i++){
+                console.log(1);
+               if(ospan[i].classList.contains('bar-fill')==false) {
+                   ospan[i].className += ' ' + 'bar-fill';
+               }
+            }
+        }
+*/
+
+    }
+
+</script>
+
+<body style="height: 2000px">
+<div class="container">
+    <div class="title plain"></div>
+    <div class="bar">
+        <span class="b1ar-unfill">
+            <span class="213"></span>
+        </span>
+    </div>
+
+    <div class="bar " style="margin-top: 50px">
+        <span class="b1ar-unfill">
+            <span class="qwe"></span>
+        </span>
+    </div>
+</div>
+</body>
+</html>
